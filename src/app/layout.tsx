@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 
 import Footer from "@/app/_components/ui/Footer";
 import Navbar from "@/app/_components/ui/Navbar";
+import ConvexClientProvider from "@/app/_lib/convex/ConvexClientProvider";
 import { manrope } from "@/app/_styles/font";
 import "@/styles/globals.css";
 import { Metadata } from "next";
@@ -19,7 +20,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body className={`${manrope.className} antialiased`}>
         <Navbar />
-        <main>{children}</main>
+        <main>
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+        </main>
         <Footer />
       </body>
     </html>

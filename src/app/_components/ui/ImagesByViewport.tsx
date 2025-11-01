@@ -1,9 +1,10 @@
 import Image, { StaticImageData } from "next/image";
 interface ImagesByViewport {
-  src: StaticImageData;
-  srcDesktop: StaticImageData;
-  srcTab: StaticImageData;
+  src: StaticImageData | string;
+  srcDesktop: StaticImageData | string;
+  srcTab: StaticImageData | string;
   alt: string;
+  blurdata?: string;
 }
 
 export default function ImagesByViewport({
@@ -11,6 +12,7 @@ export default function ImagesByViewport({
   srcTab,
   srcDesktop,
   alt,
+  blurdata,
 }: ImagesByViewport) {
   return (
     <>
@@ -20,6 +22,7 @@ export default function ImagesByViewport({
         quality={100}
         placeholder="blur"
         fill
+        blurDataURL={blurdata ?? ""}
         className="object-cover md:hidden"
       />
 
@@ -29,6 +32,7 @@ export default function ImagesByViewport({
         quality={100}
         placeholder="blur"
         fill
+        blurDataURL={blurdata ?? ""}
         className="hidden object-cover md:block lg:hidden"
       />
 
@@ -38,6 +42,7 @@ export default function ImagesByViewport({
         quality={100}
         placeholder="blur"
         fill
+        blurDataURL={blurdata ?? ""}
         className="hidden object-cover lg:block"
       />
     </>

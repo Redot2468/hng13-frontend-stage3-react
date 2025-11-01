@@ -13,27 +13,27 @@ export const ICONS = [facebook, twitter, linkedin];
 
 export const DESKTOP_MENU_LINKS = [
   { name: "home", link: "/" },
-  { name: "headphones", link: "/categories/headphones" },
-  { name: "speakers", link: "/categories/speakers" },
-  { name: "earphones", link: "/categories/earphones" },
+  { name: "headphones", link: "/category/headphones" },
+  { name: "speakers", link: "/category/speakers" },
+  { name: "earphones", link: "/category/earphones" },
 ];
 export const MENU_LINKS = [
   {
     src: headphoneImage,
     alt: "headphones",
     name: "headphones",
-    link: "/categories/headphones",
+    link: "/category/headphones",
   },
   {
     src: speakerImage,
     alt: "speakers",
     name: "speakers",
-    link: "/categories/speakers",
+    link: "/category/speakers",
   },
   {
     src: earphoneImage,
     alt: "earphones",
     name: "earphones",
-    link: "/categories/speakers",
+    link: "/category/earphones",
   },
 ];

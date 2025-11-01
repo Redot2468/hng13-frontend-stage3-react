@@ -21,17 +21,17 @@
     @apply mx-auto max-w-[1100px];
   }
   h1 {
-    @apply text-[36px] leading-10 font-bold tracking-[1.29px] uppercase sm:text-[56px] sm:leading-[58px] sm:tracking-[2px];
+    @apply text-[36px] leading-10 font-bold tracking-[1.29px] uppercase md:text-[56px] md:leading-[58px] md:tracking-[2px];
   }
   h2 {
-    @apply text-[28px] leading-11 font-bold tracking-[1.5px] sm:text-[40px];
+    @apply text-[28px] leading-11 font-bold tracking-[1.5px] md:text-[40px];
   }
   h3 {
     @apply text-[32px] leading-[36px] font-bold tracking-[1.15px];
   }
 
   h4 {
-    @apply text-[28px] leading-[38px] font-bold tracking-[2px] sm:text-[32px];
+    @apply text-[28px] leading-[38px] font-bold tracking-[2px] md:text-[32px];
   }
 
   h5 {

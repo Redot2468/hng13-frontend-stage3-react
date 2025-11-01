@@ -19,7 +19,7 @@ export function useCloseModal(parentContainerClass: string) {
     }
 
     return () => document.removeEventListener("click", handleCloseNav);
-  }, [isModalOpen]);
+  }, [isModalOpen, parentContainerClass]);
 
   return { isModalOpen, toggleModal, setIsModalOpen };
 }

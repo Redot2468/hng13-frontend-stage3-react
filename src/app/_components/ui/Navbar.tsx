@@ -26,15 +26,13 @@ export default function Navbar() {
       }
     }
 
-    closeMobileNavInDesktop();
-
     window.addEventListener("resize", closeMobileNavInDesktop);
 
     return () => window.removeEventListener("resize", closeMobileNavInDesktop);
   }, [setIsNavOpen]);
 
   return (
-    <nav className="absolute top-0 z-10 w-full items-center bg-[#191919] px-6">
+    <nav className="top-0 z-10 w-full items-center bg-[#191919] px-6">
       <div className="block__container flex h-20 w-full items-center border-b border-neutral-700">
         <div className="flex w-full items-center justify-between">
           <div className="md:flex md:items-center md:gap-8">
@@ -76,51 +74,61 @@ export default function Navbar() {
       </div>
 
       <AnimatePresence>
-        <motion.div
-          animate={{
-            width: isNavOpen ? "100%" : 0,
-            opacity: isNavOpen ? 1 : 0,
-          }}
-          className="fixed top-0 left-0 z-50 h-full w-full overflow-hidden bg-black/40 backdrop-blur-xs"
-        >
-          <div className="flex h-20 w-full items-center justify-end px-6">
-            <button aria-label="close nav" onClick={toggleNav}>
-              <X className="text-white" />
-            </button>
-          </div>
-          <aside
-            className={`categories-menu z-50 flex w-full flex-col items-center justify-center gap-20 rounded-b-lg bg-white px-6 pt-20 pb-10 transition-all duration-1000 sm:flex-row sm:gap-4`}
+        {isNavOpen && (
+          <motion.div
+            initial={{
+              width: 0,
+              opacity: 0,
+            }}
+            animate={{
+              width: "100%",
+              opacity: 1,
+            }}
+            exit={{
+              width: 0,
+              opacity: 0,
+            }}
+            className="fixed top-0 left-0 z-50 h-full w-full overflow-hidden bg-black/40 backdrop-blur-xs"
           >
-            {MENU_LINKS?.map((menulink, idx) => (
-              <div
-                key={idx}
-                className="bg-white-3 relative flex w-full flex-col items-center rounded-lg"
-              >
-                <Image
-                  src={menulink.src}
-                  alt={menulink.alt}
-                  quality={100}
-                  priority={true}
-                  className="absolute -top-12"
-                />
+            <div className="flex h-20 w-full items-center justify-end px-6">
+              <button aria-label="close nav" onClick={toggleNav}>
+                <X className="text-white" />
+              </button>
+            </div>
+            <aside
+              className={`categories-menu z-50 flex w-full flex-col items-center justify-center gap-20 rounded-b-lg bg-white px-6 pt-20 pb-10 transition-all duration-1000 sm:flex-row sm:gap-4`}
+            >
+              {MENU_LINKS?.map((menulink, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white-3 relative flex w-full flex-col items-center rounded-lg"
+                >
+                  <Image
+                    src={menulink.src}
+                    alt={menulink.alt}
+                    quality={100}
+                    priority={true}
+                    className="absolute -top-12"
+                  />
 
-                <div className="flex flex-col items-center justify-center gap-3 pt-20 pb-4">
-                  <p className="font-bold tracking-[1.07px] uppercase">
-                    {menulink.name}{" "}
-                  </p>
-                  <Link href={menulink.link}>
-                    <button className="flex items-center gap-1 text-[13px] font-bold tracking-[1px] text-black/50 uppercase">
-                      shop{" "}
-                      <span>
-                        <ChevronRight className="text-brown-dark size-4" />
-                      </span>
-                    </button>
-                  </Link>
+                  <div className="flex flex-col items-center justify-center gap-3 pt-20 pb-4">
+                    <p className="font-bold tracking-[1.07px] uppercase">
+                      {menulink.name}{" "}
+                    </p>
+                    <Link href={menulink.link}>
+                      <button className="flex items-center gap-1 text-[13px] font-bold tracking-[1px] text-black/50 uppercase">
+                        shop{" "}
+                        <span>
+                          <ChevronRight className="text-brown-dark size-4" />
+                        </span>
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </aside>
-        </motion.div>
+              ))}
+            </aside>
+          </motion.div>
+        )}
       </AnimatePresence>
     </nav>
   );

@@ -1,8 +1,14 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
-
+// Id, image, name, price, quantity
 export default defineSchema({
-  // Other tables here...
+  carts: defineTable({
+    image: v.string(),
+    name: v.string(),
+    price: v.float64(),
+    quantity: v.number(),
+    productId: v.string(),
+  }),
 
   products: defineTable({
     category: v.string(),
@@ -52,5 +58,7 @@ export default defineSchema({
     ),
     price: v.float64(),
     slug: v.string(),
-  }).index("category", ["category"]),
+  })
+    .index("category", ["category"])
+    .index("slug", ["slug"]),
 });

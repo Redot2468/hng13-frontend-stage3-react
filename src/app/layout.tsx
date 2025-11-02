@@ -1,7 +1,9 @@
 import { PropsWithChildren } from "react";
 
+import Cart from "@/app/_components/cart/Cart";
 import Footer from "@/app/_components/ui/Footer";
 import Navbar from "@/app/_components/ui/Navbar";
+import { Toaster } from "@/app/_components/ui/sonner";
 import ConvexClientProvider from "@/app/_lib/convex/ConvexClientProvider";
 import { manrope } from "@/app/_styles/font";
 import "@/styles/globals.css";
@@ -24,6 +26,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </main>
         <Footer />
+        <Toaster />
+
+        <Cart />
       </body>
     </html>
   );

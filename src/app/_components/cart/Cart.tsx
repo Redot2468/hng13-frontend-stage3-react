@@ -1,7 +1,17 @@
-export default function Cart() {
+import CartBlock from "@/app/_components/cart/CartBlock";
+import CartInitializer from "@/app/_components/cart/CartInitializer";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "../../../../convex/_generated/api";
+
+export default async function Cart() {
+  const cart = await fetchQuery(api.cart.getCarts);
+
   return (
-    <div className="flex bg-black/40 backdrop-blur-xs">
-      <div className="border"></div>
-    </div>
+    <>
+      <CartBlock cart={cart} />
+      <CartInitializer cartProducts={cart} />
+    </>
   );
 }
+
+// if there are not product, disable checkout btn and remove the "Remove all" button

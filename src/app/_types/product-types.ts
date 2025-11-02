@@ -5,8 +5,8 @@ export type ProductType = Doc<"products">;
 export type CartType = Doc<"carts"> | undefined;
 
 export interface NewCartProductType {
-  name: string;
   image: string;
+  name: string;
   price: number;
   quantity: number;
   productId: string;

@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-export function useCloseModal(parentContainerClass: string) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => setIsModalOpen((cur) => !cur);
-
+export function useCloseModal(
+  parentContainerClass: string,
+  closeModal: () => void,
+  isModalOpen: boolean,
+) {
   useEffect(() => {
     function handleCloseNav(e: MouseEvent) {
       const targetEl = e.target as HTMLElement;
 
       if (!targetEl.closest(parentContainerClass)) {
-        setIsModalOpen(false);
+        closeModal();
       }
     }
 
@@ -19,7 +19,5 @@ export function useCloseModal(parentContainerClass: string) {
     }
 
     return () => document.removeEventListener("click", handleCloseNav);
-  }, [isModalOpen, parentContainerClass]);
-
-  return { isModalOpen, toggleModal, setIsModalOpen };
+  }, [isModalOpen, parentContainerClass, closeModal]);
 }

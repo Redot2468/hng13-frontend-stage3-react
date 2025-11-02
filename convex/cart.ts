@@ -26,3 +26,36 @@ export const getCarts = query({
     return await ctx.db.query("carts").collect();
   },
 });
+
+export const updateCart = mutation({
+  args: { id: v.id("carts"), type: v.string() },
+  handler: async (ctx, args) => {
+    const { id, type } = args;
+    const cartProducts = await ctx.db.query("carts").collect();
+
+    const cartProductToUpdate = cartProducts.find(
+      (product) => product?._id === id,
+    );
+
+    if (cartProductToUpdate) {
+      await ctx.db.patch(id, {
+        quantity:
+          type === "incr"
+            ? cartProductToUpdate?.quantity + 1
+            : cartProductToUpdate?.quantity > 0
+              ? cartProductToUpdate?.quantity - 1
+              : cartProductToUpdate?.quantity,
+      });
+    }
+  },
+});
+
+export const deleteCart = mutation({
+  handler: async (ctx) => {
+    const allCarts = await ctx.db.query("carts").collect();
+
+    allCarts.forEach(async (product) => {
+      await ctx.db.delete(product?._id);
+    });
+  },
+});

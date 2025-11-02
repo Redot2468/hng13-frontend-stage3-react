@@ -2,6 +2,8 @@
 
 import Logo from "@/app/_components/ui/Logo";
 import { useCloseModal } from "@/app/_hooks/useCloseModal";
+import { getCart, onToggleCart } from "@/app/_lib/redux/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/app/_lib/redux/hooks";
 import { DESKTOP_MENU_LINKS, MENU_LINKS } from "@/app/_utils/constant";
 import Cart from "@/public/cart.svg";
 import Menu from "@/public/menu.svg";
@@ -10,14 +12,18 @@ import { AnimatePresence, motion } from "motion/react";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const {
-    isModalOpen: isNavOpen,
-    setIsModalOpen: setIsNavOpen,
-    toggleModal: toggleNav,
-  } = useCloseModal(".categories-menu");
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => setIsNavOpen((cur) => !cur);
+  const closeNav = () => setIsNavOpen(false);
+
+  const dispatch = useAppDispatch();
+  useCloseModal(".categories-menu", closeNav, isNavOpen);
+
+  const { cart } = useAppSelector(getCart);
 
   useEffect(() => {
     function closeMobileNavInDesktop() {
@@ -63,12 +69,19 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <button>
+          <button
+            onClick={() => dispatch(onToggleCart(true))}
+            className="relative"
+          >
             <Image
               src={Cart}
               alt="The navigation bar menu button"
               quality={100}
             />
+
+            <p className="absolute -top-2 -right-2 z-30 flex size-4 items-center justify-center rounded-full bg-red-600 py-[8.5px] text-[12px] font-bold text-white">
+              {cart?.length}
+            </p>
           </button>
         </div>
       </div>

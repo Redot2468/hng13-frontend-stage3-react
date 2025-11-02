@@ -14,7 +14,7 @@ interface ProductDetailsType {
 }
 
 export default async function ProductDetails({ slug }: ProductDetailsType) {
-  const [product, cart] = await Promise.all([
+  const [product] = await Promise.all([
     fetchQuery(api.product.getProductBySlug, { slug }),
     // getCartProducts(user?.id),
   ]);
@@ -88,7 +88,7 @@ export default async function ProductDetails({ slug }: ProductDetailsType) {
             ${product?.at(0)?.price.toLocaleString()}
           </p>
 
-          <ProductButtons product={product?.at(0)} />
+          <ProductButtons product={product.at(0)} />
         </div>
       </div>
 

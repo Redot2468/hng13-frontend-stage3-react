@@ -16,7 +16,7 @@ import { toast } from "sonner";
 import { Id } from "../../../../convex/_generated/dataModel";
 
 interface ProductButtonsType {
-  product: ProductType;
+  product: ProductType | undefined;
 }
 
 export default function ProductButtons({ product }: ProductButtonsType) {
@@ -28,17 +28,17 @@ export default function ProductButtons({ product }: ProductButtonsType) {
 
   async function handleAddToCart() {
     const newProduct = {
-      name: product?.name,
-      image: product?.image?.mobile,
+      name: product?.name ?? "",
+      image: product?.image?.mobile ?? "",
       quantity: 1,
-      price: product?.price,
+      price: product?.price ?? 0,
       productId: product?._id as string,
       _id: crypto.randomUUID() as Id<"carts">,
       _creationTime: Date.now(),
     };
 
     dispatch(addProductToCart(newProduct));
-    const res = await addProductToCartAction(newProduct, product.slug);
+    const res = await addProductToCartAction(newProduct, product?.slug ?? "");
 
     if (res?.error) {
       toast.error(res.error);

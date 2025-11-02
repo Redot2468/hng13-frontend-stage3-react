@@ -8,7 +8,7 @@ export default async function Cart() {
 
   return (
     <>
-      <CartBlock cart={cart} />
+      <CartBlock />
       <CartInitializer cartProducts={cart} />
     </>
   );

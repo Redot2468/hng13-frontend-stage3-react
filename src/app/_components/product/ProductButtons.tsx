@@ -33,6 +33,7 @@ export default function ProductButtons({ product }: ProductButtonsType) {
       quantity: 1,
       price: product?.price ?? 0,
       productId: product?._id as string,
+      idu: crypto.randomUUID(),
       _id: crypto.randomUUID() as Id<"carts">,
       _creationTime: Date.now(),
     };
@@ -54,10 +55,10 @@ export default function ProductButtons({ product }: ProductButtonsType) {
       dispatch(updateProductQuantity({ id: productId, type: "incr" }));
     else dispatch(updateProductQuantity({ id: productId, type: "decr" }));
 
-    const currentProduct = cart?.find((product) => product?._id === productId);
+    const currentProduct = cart?.find((product) => product?.idu === productId);
 
     if (currentProduct?._id) {
-      const res = await updateProductQuantityAction(type, currentProduct?._id);
+      const res = await updateProductQuantityAction(type, currentProduct?.idu);
 
       if (res?.error) {
         toast.error(res?.error);
@@ -73,7 +74,7 @@ export default function ProductButtons({ product }: ProductButtonsType) {
           <Minus
             className="size-3 text-black/25"
             onClick={() =>
-              onUpdateProductQuantity(currentProductInCart?._id, "decr")
+              onUpdateProductQuantity(currentProductInCart?.idu, "decr")
             }
           />
 
@@ -82,7 +83,7 @@ export default function ProductButtons({ product }: ProductButtonsType) {
           <Plus
             className="size-3 text-black/30"
             onClick={() =>
-              onUpdateProductQuantity(currentProductInCart?._id, "incr")
+              onUpdateProductQuantity(currentProductInCart?.idu, "incr")
             }
           />
         </button>

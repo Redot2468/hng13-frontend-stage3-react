@@ -27,6 +27,7 @@ export default defineSchema({
     name: v.string(),
     price: v.float64(),
     quantity: v.number(),
+    idu: v.string(),
     productId: v.string(),
   }),
 

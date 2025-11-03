@@ -32,12 +32,12 @@ export const cartSlice = createSlice({
 
     addProductToCart(state, action: PayloadAction<CartType>) {
       const isProductInCart = state.cart.some(
-        (product) => product?._id === action.payload?._id,
+        (product) => product?.idu === action.payload?.idu,
       );
 
       state.cart = isProductInCart
         ? state.cart?.map((product) =>
-            product?._id === action?.payload?._id && product?.quantity
+            product?.idu === action?.payload?.idu && product?.quantity
               ? { ...product, quantity: product.quantity + 1 }
               : product,
           )
@@ -51,7 +51,7 @@ export const cartSlice = createSlice({
       const { id, type } = action.payload;
 
       state.cart = state.cart?.map((product) =>
-        product?._id === id
+        product?.idu === id
           ? {
               ...product,
               quantity:
@@ -67,7 +67,7 @@ export const cartSlice = createSlice({
 
     deleteOneProduct(state, action: PayloadAction<{ id: string }>) {
       state.cart = state.cart.filter(
-        (product) => product?._id !== action.payload?.id,
+        (product) => product?.idu !== action.payload?.id,
       );
     },
 

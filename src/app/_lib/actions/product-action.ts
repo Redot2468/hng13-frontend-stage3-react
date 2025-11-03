@@ -4,7 +4,6 @@ import { NewCartProductType } from "@/app/_types/product-types";
 import { fetchMutation } from "convex/nextjs";
 import { revalidatePath } from "next/cache";
 import { api } from "../../../../convex/_generated/api";
-import { Id } from "../../../../convex/_generated/dataModel";
 
 export async function deleteProductAction() {
   try {
@@ -29,8 +28,9 @@ export async function updateProductQuantityAction(
   id: string,
 ) {
   try {
+    console.log("noooooooooooooooow");
     await fetchMutation(api.cart.updateCart, {
-      id: id as Id<"carts">,
+      id,
       type,
     });
 
@@ -57,6 +57,7 @@ export async function addProductToCartAction(
       image: cartProduct?.image,
       price: cartProduct?.price,
       productId: cartProduct?.productId,
+      idu: cartProduct?.idu,
     });
 
     revalidatePath(`/${slug}`);

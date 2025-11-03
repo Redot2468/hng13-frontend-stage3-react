@@ -12,6 +12,7 @@ export interface NewCartProductType {
   price: number;
   quantity: number;
   productId: string;
+  idu: string;
 }
 
 export type CheckoutSchemaType = z.infer<typeof CheckoutSchema>;

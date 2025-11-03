@@ -8,6 +8,7 @@ export const addCartProduct = mutation({
     price: v.float64(),
     quantity: v.number(),
     productId: v.string(),
+    idu: v.string(),
   },
 
   handler: async (ctx, args) => {
@@ -17,6 +18,7 @@ export const addCartProduct = mutation({
       price: args.price,
       quantity: args.quantity,
       productId: args.productId,
+      idu: args.idu,
     });
   },
 });
@@ -28,17 +30,19 @@ export const getCarts = query({
 });
 
 export const updateCart = mutation({
-  args: { id: v.id("carts"), type: v.string() },
+  args: { id: v.string(), type: v.string() },
   handler: async (ctx, args) => {
     const { id, type } = args;
     const cartProducts = await ctx.db.query("carts").collect();
 
     const cartProductToUpdate = cartProducts.find(
-      (product) => product?._id === id,
+      (product) => product?.idu === id,
     );
 
+    console.log(cartProductToUpdate, "ohhhhhhhhhhhhhhhhhh");
+
     if (cartProductToUpdate) {
-      await ctx.db.patch(id, {
+      await ctx.db.patch(cartProductToUpdate?._id, {
         quantity:
           type === "incr"
             ? cartProductToUpdate?.quantity + 1

@@ -1,4 +1,5 @@
 "use client";
+import { CategorySkeleton } from "@/app/_components/skeletons/Category";
 import ImagesByViewport from "@/app/_components/ui/ImagesByViewport";
 import { blurDataUrl } from "@/app/_utils/blurdataurl";
 import { useQuery } from "convex/react";
@@ -9,6 +10,12 @@ export default function HeadphonesProducts() {
   const headphones = useQuery(api.category.getProductsByCategory, {
     category: "headphones",
   });
+
+  const isLoading = headphones === undefined;
+
+  if (isLoading) {
+    return <CategorySkeleton />;
+  }
 
   return (
     <div className="block__container space-y-14 pt-12 lg:mt-12 lg:space-y-24">

@@ -1,6 +1,7 @@
 import ZX9Img from "@/public/assets/home/speaker-vector.png";
 import PatternImg from "@/public/home/desktop/pattern-circles.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ZX9Speaker() {
   return (
@@ -33,9 +34,11 @@ export default function ZX9Speaker() {
             truly remarkable sound.
           </p>
 
-          <button className="btn mt-2 cursor-pointer bg-black text-white uppercase hover:opacity-80">
-            see product
-          </button>
+          <Link href={`/zx9-speaker`}>
+            <button className="btn mt-2 cursor-pointer bg-black text-white uppercase hover:opacity-80">
+              see product
+            </button>
+          </Link>
         </div>
       </div>
     </div>

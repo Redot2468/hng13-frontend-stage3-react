@@ -5,11 +5,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface CartSliceType {
   cart: CartType[];
   isCartOpen: boolean;
+  isSuccessModalOpen: boolean;
 }
 
 const initialState: CartSliceType = {
   cart: [],
   isCartOpen: false,
+  isSuccessModalOpen: false,
 };
 
 export const cartSlice = createSlice({
@@ -18,6 +20,10 @@ export const cartSlice = createSlice({
   reducers: {
     onToggleCart(state, action: PayloadAction<boolean>) {
       state.isCartOpen = action.payload;
+    },
+
+    onToggleSuccessModal(state, action: PayloadAction<boolean>) {
+      state.isSuccessModalOpen = action.payload;
     },
 
     addCartOnMount(state, action: PayloadAction<CartType[]>) {
@@ -72,6 +78,7 @@ export const cartSlice = createSlice({
 });
 
 export const {
+  onToggleSuccessModal,
   onToggleCart,
   addCartOnMount,
   addProductToCart,

@@ -1,3 +1,5 @@
+import { CheckoutSchema } from "@/app/_lib/schema/checkout-schema";
+import z from "zod";
 import { Doc } from "../../../convex/_generated/dataModel";
 
 export type ProductType = Doc<"products">;
@@ -11,3 +13,5 @@ export interface NewCartProductType {
   quantity: number;
   productId: string;
 }
+
+export type CheckoutSchemaType = z.infer<typeof CheckoutSchema>;

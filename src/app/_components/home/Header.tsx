@@ -3,6 +3,7 @@ import Image from "next/image";
 import BannerImgDesktop from "@/public/home/desktop/image-hero.jpg";
 import BannerImg from "@/public/home/mobile/image-header.jpg";
 import BannerImgTablet from "@/public/home/tablet/image-header.jpg";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -46,9 +47,11 @@ export default function Header() {
             made for the passionate music enthusiast.
           </p>
 
-          <button className="btn btn-default mt-2 uppercase">
-            see product
-          </button>
+          <Link href="/xx99-mark-one-headphones">
+            <button className="btn btn-default mt-2 uppercase">
+              see product
+            </button>
+          </Link>
         </div>
       </div>
     </header>

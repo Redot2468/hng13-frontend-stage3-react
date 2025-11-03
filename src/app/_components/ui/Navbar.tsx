@@ -129,7 +129,10 @@ export default function Navbar() {
                       {menulink.name}{" "}
                     </p>
                     <Link href={menulink.link}>
-                      <button className="flex items-center gap-1 text-[13px] font-bold tracking-[1px] text-black/50 uppercase">
+                      <button
+                        className="flex items-center gap-1 text-[13px] font-bold tracking-[1px] text-black/50 uppercase"
+                        onClick={() => setIsNavOpen(false)}
+                      >
                         shop{" "}
                         <span>
                           <ChevronRight className="text-brown-dark size-4" />
@@ -146,3 +149,8 @@ export default function Navbar() {
     </nav>
   );
 }
+
+/**
+ * Add skeletons and loading states
+ * remove borders
+ */

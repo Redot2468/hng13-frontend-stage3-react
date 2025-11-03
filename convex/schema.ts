@@ -17,6 +17,7 @@ export const orderSchema = () => {
         price: v.float64(),
         quantity: v.number(),
         productId: v.string(),
+        idu: v.string(),
       }),
     ),
   };

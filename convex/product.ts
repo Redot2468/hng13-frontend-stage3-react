@@ -10,3 +10,9 @@ export const getProductBySlug = query({
       .collect();
   },
 });
+
+export const getAllProducts = query({
+  handler: (ctx) => {
+    return ctx.db.query("products").collect();
+  },
+});

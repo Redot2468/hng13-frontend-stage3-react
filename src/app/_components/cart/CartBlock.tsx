@@ -16,11 +16,13 @@ import { blurDataUrl } from "@/app/_utils/blurdataurl";
 import { Minus, Plus, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export default function CartBlock() {
   const { cart, isCartOpen } = useAppSelector(getCart);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const closeModal = () => dispatch(onToggleCart(false));
   useCloseModal(".cart-container", closeModal, isCartOpen);
@@ -80,7 +82,7 @@ export default function CartBlock() {
             initial={{ scale: "90%" }}
             animate={{ scale: "100%" }}
             exit={{ scale: "90%" }}
-            className="hide-scrollbar cart-container relative mx-auto h-[490px] w-full max-w-[370px] overflow-y-scroll rounded-xl border bg-white px-6 py-8 md:mx-0 md:ml-auto md:max-w-[377px]"
+            className="hide-scrollbar cart-container relative mx-auto h-[490px] w-full max-w-[370px] overflow-y-scroll rounded-xl bg-white px-6 py-8 md:mx-0 md:ml-auto md:max-w-[377px]"
           >
             <header className="flex items-center justify-between">
               <h6 className="uppercase">cart ({cart?.length})</h6>
@@ -164,6 +166,10 @@ export default function CartBlock() {
               <button
                 disabled={!cart?.length}
                 className="btn btn-default w-full uppercase disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={() => {
+                  router.push("/checkout");
+                  onCloseCart();
+                }}
               >
                 checkout
               </button>

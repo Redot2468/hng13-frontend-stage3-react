@@ -10,6 +10,7 @@
 
 import type * as cart from "../cart.js";
 import type * as category from "../category.js";
+import type * as order from "../order.js";
 import type * as product from "../product.js";
 
 import type {
@@ -29,6 +30,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   cart: typeof cart;
   category: typeof category;
+  order: typeof order;
   product: typeof product;
 }>;
 declare const fullApiWithMounts: typeof fullApi;

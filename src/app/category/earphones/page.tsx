@@ -16,7 +16,7 @@ export default function Page() {
       </div>
 
       <div className="px-6">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
           <EarphoneProducts />
         </Suspense>
         <Categories />

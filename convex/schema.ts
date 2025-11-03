@@ -1,6 +1,26 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 // Id, image, name, price, quantity
+
+export const orderSchema = () => {
+  return {
+    name: v.string(),
+    email: v.string(),
+    address: v.string(),
+    phone: v.string(),
+    orders: v.array(
+      v.object({
+        _id: v.string(),
+        _creationTime: v.number(),
+        image: v.string(),
+        name: v.string(),
+        price: v.float64(),
+        quantity: v.number(),
+        productId: v.string(),
+      }),
+    ),
+  };
+};
 export default defineSchema({
   carts: defineTable({
     image: v.string(),
@@ -9,6 +29,8 @@ export default defineSchema({
     quantity: v.number(),
     productId: v.string(),
   }),
+
+  order: defineTable(orderSchema()),
 
   products: defineTable({
     category: v.string(),

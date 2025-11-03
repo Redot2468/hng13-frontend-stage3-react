@@ -6,7 +6,7 @@ import BestAudioGearTabletImage from "@/public/assets/shared/tablet/image-best-g
 export default function BestGear() {
   return (
     <div className="block__container mx-auto mt-20 mb-28 flex flex-col space-y-8 lg:flex-row-reverse lg:items-center">
-      <div className="relative h-[300px] w-full border lg:h-[588px] lg:w-[50%]">
+      <div className="relative h-[300px] w-full lg:h-[588px] lg:w-[50%]">
         <ImagesByViewport
           src={BestAudioGearImage}
           srcTab={BestAudioGearTabletImage}

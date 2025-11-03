@@ -11,6 +11,8 @@ export async function deleteProductAction() {
     await fetchMutation(api.cart.deleteCart);
 
     revalidatePath("/");
+
+    return { success: true };
   } catch (error) {
     if (error instanceof Error) {
       console.log(error);

@@ -11,7 +11,9 @@ interface ParamType {
 export async function generateStaticParams() {
   const products = await fetchQuery(api.product.getAllProducts);
 
-  return products?.map((product) => ({ slug: product?.slug }));
+  console.log(products, "yyyyyyyyyyyyyyyyyyyyyyy");
+
+  return products?.map((product) => ({ productId: product?.slug }));
 }
 
 export async function generateMetadata({ params }: ParamType) {

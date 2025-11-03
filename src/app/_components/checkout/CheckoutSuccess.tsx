@@ -69,7 +69,7 @@ export default function CheckoutSuccess() {
             initial={{ scale: "90%" }}
             animate={{ scale: "100%" }}
             exit={{ scale: "90%" }}
-            className="success-modal modal mx-auto h-[600px] w-full max-w-[540px] space-y-8 rounded-xl bg-white px-7 py-10 sm:px-9 sm:py-10"
+            className="success-modal modal mx-auto min-h-[600px] w-full max-w-[540px] space-y-8 rounded-xl bg-white px-7 py-10 sm:px-9 sm:py-10"
           >
             <div className="">
               <Image
